@@ -42,36 +42,36 @@ class Query:
 #             result.append(response)
 #     return result
 
-def hashFunction(self,text):
-    reply = 0
-    for i in reversed(text):
-        reply = (reply * self.multiplier + ord(i)) % self.prime
-    return reply % self.b_count
+    def hashFunction(self,text):
+        reply = 0
+        for i in reversed(text):
+            reply = (reply * self.multiplier + ord(i)) % self.prime
+        return reply % self.b_count
 
-def add(self,num,name):
-    hashedNum = self.hashFunction(str(num))
-    bucket = self.b[hashedNum]
-    for j in range(len(bucket)):
-        if bucket[j][0] == num:
-            bucket[j] = (num,name)
-            return
-    bucket.append((num,name))
+    def add(self,num,name):
+        hashedNum = self.hashFunction(str(num))
+        bucket = self.b[hashedNum]
+        for j in range(len(bucket)):
+            if bucket[j][0] == num:
+                bucket[j] = (num,name)
+                return
+        bucket.append((num,name))
 
-def delete(self,num):
-    hashedNum = self.hashFunction(str(num))
-    bucket = self.b[hashedNum]
-    for j in range(len(bucket)):
-        if bucket[j][0] == num:
-            del bucket[j]
-            return
+    def delete(self,num):
+        hashedNum = self.hashFunction(str(num))
+        bucket = self.b[hashedNum]
+        for j in range(len(bucket)):
+            if bucket[j][0] == num:
+                del bucket[j]
+                return
 
-def find(self,num):
-    hashedNum = self.hashFunction(str(num))
-    bucket = self.b[hashedNum]
-    for j in range(len(bucket)):
-        if bucket[j][0] == num:
-            return bucket[j][1]
-        return "not found"
+    def find(self,num):
+        hashedNum = self.hashFunction(str(num))
+        bucket = self.b[hashedNum]
+        for j in range(len(bucket)):
+            if bucket[j][0] == num:
+                return bucket[j][1]
+            return "not found"
 
 if __name__ == '__main__':
     # write_responses(process_queries(read_queries()))
@@ -86,6 +86,6 @@ if __name__ == '__main__':
             phoneBook.delete(int(query[1]))
         elif query[0] == "find":
             answer.append(phoneBook.find(int(query[1])))
-            
+
     for j in range(len(answer)):
         print(reply[j])

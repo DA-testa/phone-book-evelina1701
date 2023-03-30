@@ -1,9 +1,10 @@
 # python3
+import random
 
 class Query:
     def __init__(self):
-        self.prime = 10000019
-        self.multiplier = 263
+        self.prime = random.randint(0,10000019)
+        self.multiplier = random.randint(0,263)
         self.b_count = 1000
         self.b = [[] for _ in range(self.b_count)]
 

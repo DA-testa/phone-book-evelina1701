@@ -88,4 +88,4 @@ if __name__ == '__main__':
             answer.append(phoneBook.find(int(query[1])))
 
     for j in range(len(answer)):
-        print(reply[j])
+        print(answer[j])

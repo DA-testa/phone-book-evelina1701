@@ -66,12 +66,13 @@ class Query:
                 return
 
     def find(self,num):
+        text = "not found"
         hashedNum = self.hashFunction(str(num))
         bucket = self.b[hashedNum]
         for j in range(len(bucket)):
             if bucket[j][0] == num:
                 return bucket[j][1]
-            return "not found"
+            return text
 
 if __name__ == '__main__':
     # write_responses(process_queries(read_queries()))

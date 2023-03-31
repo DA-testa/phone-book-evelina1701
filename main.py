@@ -5,39 +5,39 @@ class Query:
     def __init__(self):
         self.prime = random.randint(0,10000019)
         self.multiplier = random.randint(0,263)
-        self.b_count = 1000
-        self.b = [[] for _ in range(self.b_count)]
+        self.record_count = 1000
+        self.records = [[] for _ in range(self.record_count)]
 
     def hashFunction(self,text):
         reply = 0
         for i in reversed(text):
             reply = (reply * self.multiplier + ord(i)) % self.prime
-        return reply % self.b_count
+        return reply % self.record_count
 
     def add(self,num,name):
         hashedNum = self.hashFunction(str(num))
-        bucket = self.b[hashedNum]
-        for j in range(len(bucket)):
-            if bucket[j][0] == num:
-                bucket[j] = (num,name)
+        record = self.records[hashedNum]
+        for j in range(len(record)):
+            if record[j][0] == num:
+                record[j] = (num,name)
                 return
-        bucket.append((num,name))
+        record.append((num,name))
 
     def delete(self,num):
         hashedNum = self.hashFunction(str(num))
-        bucket = self.b[hashedNum]
-        for j in range(len(bucket)):
-            if bucket[j][0] == num:
-                del bucket[j]
+        record = self.records[hashedNum]
+        for j in range(len(record)):
+            if record[j][0] == num:
+                del record[j]
                 return
 
     def find(self,num):
         text = "not found"
         hashedNum = self.hashFunction(str(num))
-        bucket = self.b[hashedNum]
-        for j in range(len(bucket)):
-            if bucket[j][0] == num:
-                return bucket[j][1]
+        record = self.records[hashedNum]
+        for j in range(len(record)):
+            if record[j][0] == num:
+                return record[j][1]
         return text
 
 if __name__ == '__main__':
